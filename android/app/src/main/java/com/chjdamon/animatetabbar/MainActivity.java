@@ -1,4 +1,4 @@
-package com.rntemplate;
+package com.chjdamon.animatetabbar;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -22,7 +22,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "rnTemplate";
+    return "AnimatedTabbar";
   }
 
   @Override
