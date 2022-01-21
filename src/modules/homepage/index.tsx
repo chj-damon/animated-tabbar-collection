@@ -10,6 +10,7 @@ export function Homepage() {
       <Center>
         <Button title="底部导航自定义动画示例1" onPress={() => navigation.navigate('AnimatedTabbarDemo1')} />
         <Button title="底部导航自定义动画示例2" onPress={() => navigation.navigate('AnimatedTabbarDemo2')} />
+        <Button title="底部导航自定义动画示例3" onPress={() => navigation.navigate('AnimatedTabbarDemo3')} />
       </Center>
     </Container>
   );
