@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import { Box, Flex, helpers } from '@td-design/react-native';
+import { Flex, helpers, Text } from '@td-design/react-native';
 import Animated, {
   Easing,
   Extrapolate,
@@ -10,57 +10,58 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import { useUpdateEffect } from '@td-design/rn-hooks';
 
 import { CustomTabBarProps, TabItem } from './TabItem';
-import { usePrevious } from '@td-design/rn-hooks';
+import { useTheme } from '@shopify/restyle';
+import { AppTheme } from 'theme';
 
 const { deviceWidth, ONE_PIXEL } = helpers;
 const defaultTabBarHeight = 48;
 
 const CustomTabBar: FC<BottomTabBarProps & CustomTabBarProps> = ({
-  onPressInScale = 1.3,
-  onPressOutScale = 1,
-  defaultFlexValue = 1,
-  activeFlexValue = 2,
   duration = 200,
   tabBarHeight = defaultTabBarHeight,
   backgroundStyle,
   state,
-  activeTintColor,
-  inactiveTintColor,
   insets,
   descriptors,
 }) => {
-  const prevIndex = usePrevious(state.index) ?? state.index;
+  const theme = useTheme<AppTheme>();
   const { routes } = state;
-  const currentIndex = useSharedValue(state.index);
-  const itemWidth = (deviceWidth / routes.length) * defaultFlexValue;
-  const itemWidthAnimations = routes.map((_, index) =>
-    useSharedValue(index === state.index ? activeFlexValue : defaultFlexValue),
-  );
-  const pressAnimations = routes.map(() => useSharedValue(1));
+  const { options } = descriptors[routes[state.index].key];
+  const itemWidth = deviceWidth / routes.length;
 
-  useEffect(() => {
+  const currentIndex = useSharedValue(state.index);
+
+  useUpdateEffect(() => {
     currentIndex.value = withTiming(state.index, {
       duration,
       easing: Easing.linear,
     });
+  }, [state.index, duration]);
 
-    itemWidthAnimations[prevIndex].value = withTiming(defaultFlexValue, {
-      duration,
-      easing: Easing.linear,
-    });
-    itemWidthAnimations[state.index].value = withTiming(activeFlexValue, {
-      duration,
-      easing: Easing.linear,
-    });
-  }, [activeFlexValue, currentIndex, defaultFlexValue, duration, itemWidthAnimations, prevIndex, routes, state.index]);
+  const renderIcon = () => {
+    if (!options.tabBarIcon) return null;
+    return (
+      <Animated.View>{options.tabBarIcon({ focused: true, color: theme.colors.primary200, size: 20 })}</Animated.View>
+    );
+  };
 
-  const renderBackground = () => {
+  const renderLabel = () => {
+    if (!options.tabBarLabel) return null;
+    return (
+      <Animated.View>
+        <Text color="primary200">{options.tabBarLabel}</Text>
+      </Animated.View>
+    );
+  };
+
+  const renderActiveItem = () => {
     const activeItemWidth = itemWidth;
+    const inputRange = routes.map((_, index) => index);
 
     const style = useAnimatedStyle(() => {
-      const inputRange = routes.map((_, index) => index);
       const outputRange = routes.map((_, index) => itemWidth * index);
       const translateX = interpolate(currentIndex.value, inputRange, outputRange, Extrapolate.CLAMP);
 
@@ -73,14 +74,18 @@ const CustomTabBar: FC<BottomTabBarProps & CustomTabBarProps> = ({
       <Animated.View
         style={[{ position: 'absolute', top: 0, left: 0, width: activeItemWidth, height: tabBarHeight }, style]}
       >
-        <Box flex={1}>
-          <Box
-            flex={1}
-            margin={'x1'}
-            backgroundColor="func100"
-            style={[{ borderRadius: tabBarHeight }, backgroundStyle]}
-          />
-        </Box>
+        <Flex
+          flex={1}
+          margin="x1"
+          paddingHorizontal={'x2'}
+          backgroundColor="func100"
+          justifyContent="space-around"
+          alignItems="center"
+          style={[{ borderRadius: tabBarHeight }, backgroundStyle]}
+        >
+          {renderIcon()}
+          {renderLabel()}
+        </Flex>
       </Animated.View>
     );
   };
@@ -96,7 +101,6 @@ const CustomTabBar: FC<BottomTabBarProps & CustomTabBarProps> = ({
         marginBottom: insets.bottom,
       }}
     >
-      {renderBackground()}
       {/* 渲染Tab项 */}
       {routes.map((_, index) => (
         <TabItem
@@ -106,16 +110,10 @@ const CustomTabBar: FC<BottomTabBarProps & CustomTabBarProps> = ({
             descriptors,
             index,
             tabBarHeight,
-            currentIndex,
-            activeTintColor,
-            inactiveTintColor,
-            onPressInScale,
-            onPressOutScale,
-            itemWidthAnimations,
-            pressAnimations,
           }}
         />
       ))}
+      {renderActiveItem()}
     </Flex>
   );
 };

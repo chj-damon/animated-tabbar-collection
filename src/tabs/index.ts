@@ -4,7 +4,6 @@ import { TabScreen1 } from './screen1';
 import { TabScreen2 } from './screen2';
 import { TabScreen3 } from './screen3';
 import { TabScreen4 } from './screen4';
-import { TabScreen5 } from './screen5';
 
 export const tabItems: { name: string; label: string; icon: IconNames; component: () => JSX.Element }[] = [
   {
@@ -29,12 +28,6 @@ export const tabItems: { name: string; label: string; icon: IconNames; component
     name: 'TabScreen4',
     component: TabScreen4,
     label: 'tab4',
-    icon: 'sms',
-  },
-  {
-    name: 'TabScreen5',
-    component: TabScreen5,
-    label: 'tab5',
     icon: 'sms',
   },
 ];
