@@ -5,6 +5,7 @@ import { Homepage } from 'modules/homepage';
 import AnimatedTabbarDemo1 from 'modules/demo1';
 import AnimatedTabbarDemo2 from 'modules/demo2';
 import AnimatedTabbarDemo3 from 'modules/demo3';
+import AnimatedTabbarDemo4 from 'modules/demo4';
 
 const Stack = createStackNavigator();
 
@@ -33,6 +34,13 @@ const screens = [
   {
     name: 'AnimatedTabbarDemo3',
     component: AnimatedTabbarDemo3,
+    options: {
+      headerShown: false,
+    },
+  },
+  {
+    name: 'AnimatedTabbarDemo4',
+    component: AnimatedTabbarDemo4,
     options: {
       headerShown: false,
     },

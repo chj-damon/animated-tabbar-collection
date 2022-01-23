@@ -50,6 +50,7 @@ module.exports = {
     'react-native/no-single-element-style-arrays': 2,
     'react-native/no-color-literals': 2,
     'react-native/sort-styles': 0,
+    'react-native/no-color-literals': 0,
     'replace-hooks/no-forbidden-hooks': [
       'error',
       { useState: { tip: 'useSafeState', dependency: '@td-design/rn-hooks' } },
