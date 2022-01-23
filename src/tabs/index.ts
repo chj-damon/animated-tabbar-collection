@@ -4,6 +4,7 @@ import { TabScreen1 } from './screen1';
 import { TabScreen2 } from './screen2';
 import { TabScreen3 } from './screen3';
 import { TabScreen4 } from './screen4';
+import { TabScreen5 } from './screen5';
 
 export const tabItems: {
   name: string;
@@ -30,7 +31,7 @@ export const tabItems: {
     name: 'TabScreen3',
     component: TabScreen3,
     label: 'tab3',
-    icon: 'sms',
+    icon: 'user',
     bgColor: '#52C41A',
   },
   {
@@ -39,5 +40,12 @@ export const tabItems: {
     label: 'tab4',
     icon: 'sms',
     bgColor: '#1890FF',
+  },
+  {
+    name: 'TabScreen5',
+    component: TabScreen5,
+    label: 'tab5',
+    icon: 'sms',
+    bgColor: '#F86E21',
   },
 ];
