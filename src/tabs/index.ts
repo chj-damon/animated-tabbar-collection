@@ -25,7 +25,7 @@ export const tabItems: {
     name: 'TabScreen2',
     component: TabScreen2,
     label: 'tab2',
-    icon: 'sms',
+    icon: 'qq',
     bgColor: '#FFD21D',
   },
   {
@@ -39,14 +39,14 @@ export const tabItems: {
     name: 'TabScreen4',
     component: TabScreen4,
     label: 'tab4',
-    icon: 'sms',
+    icon: 'wechat',
     bgColor: '#1890FF',
   },
   {
     name: 'TabScreen5',
     component: TabScreen5,
     label: 'tab5',
-    icon: 'sms',
+    icon: 'mobile',
     bgColor: '#F86E21',
   },
 ];

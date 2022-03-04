@@ -16,8 +16,6 @@ export interface TabItemProps {
 export const TabItem: React.FC<TabItemProps> = ({ style, icon, label, active, onPress }) => {
   const animationValue = useSharedValue(0);
 
-  console.log(active);
-
   useEffect(() => {
     animationValue.value = withSpring(active ? 1 : 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps

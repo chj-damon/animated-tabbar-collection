@@ -18,6 +18,9 @@ export function Homepage() {
         <Button title="底部导航自定义动画示例7" onPress={() => navigation.navigate('AnimatedTabbarDemo7')} />
         <Button title="底部导航自定义动画示例8" onPress={() => navigation.navigate('AnimatedTabbarDemo8')} />
         <Button title="底部导航自定义动画示例9" onPress={() => navigation.navigate('AnimatedTabbarDemo9')} />
+        <Button title="底部导航自定义动画示例10" onPress={() => navigation.navigate('AnimatedTabbarDemo10')} />
+        <Button title="底部导航自定义动画示例11" onPress={() => navigation.navigate('AnimatedTabbarDemo11')} />
+        <Button title="底部导航自定义动画示例12" onPress={() => navigation.navigate('AnimatedTabbarDemo12')} />
       </ScrollView>
     </Container>
   );

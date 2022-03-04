@@ -9,6 +9,9 @@ type MainStackParamList = {
   AnimatedTabbarDemo7: undefined;
   AnimatedTabbarDemo8: undefined;
   AnimatedTabbarDemo9: undefined;
+  AnimatedTabbarDemo10: undefined;
+  AnimatedTabbarDemo11: undefined;
+  AnimatedTabbarDemo12: undefined;
 };
 
 type AppParamList = MainStackParamList;

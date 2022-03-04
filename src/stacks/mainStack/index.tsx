@@ -11,6 +11,9 @@ import AnimatedTabbarDemo6 from 'modules/demo6';
 import AnimatedTabbarDemo7 from 'modules/demo7';
 import AnimatedTabbarDemo8 from 'modules/demo8';
 import AnimatedTabbarDemo9 from 'modules/demo9';
+import AnimatedTabbarDemo10 from 'modules/demo10';
+import AnimatedTabbarDemo11 from 'modules/demo11';
+import AnimatedTabbarDemo12 from 'modules/demo12';
 
 const Stack = createStackNavigator();
 
@@ -81,6 +84,27 @@ const screens = [
   {
     name: 'AnimatedTabbarDemo9',
     component: AnimatedTabbarDemo9,
+    options: {
+      headerShown: false,
+    },
+  },
+  {
+    name: 'AnimatedTabbarDemo10',
+    component: AnimatedTabbarDemo10,
+    options: {
+      headerShown: false,
+    },
+  },
+  {
+    name: 'AnimatedTabbarDemo11',
+    component: AnimatedTabbarDemo11,
+    options: {
+      headerShown: false,
+    },
+  },
+  {
+    name: 'AnimatedTabbarDemo12',
+    component: AnimatedTabbarDemo12,
     options: {
       headerShown: false,
     },
